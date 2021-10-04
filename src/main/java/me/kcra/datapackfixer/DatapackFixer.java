@@ -32,6 +32,10 @@ public final class DatapackFixer {
                 //noinspection ResultOfMethodCallIgnored
                 WORK_FOLDER.toFile().mkdirs();
                 final File datapackFile = Path.of(cmd.getOptionValue("f")).toFile();
+                if (!datapackFile.exists() || datapackFile.isDirectory()) {
+                    LOGGER.log(Level.SEVERE, "Invalid path to datapack file!");
+                    System.exit(-1);
+                }
                 try {
                     UnzippingTask.of(datapackFile).start();
                 } catch (Exception e) {
