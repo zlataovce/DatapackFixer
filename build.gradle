@@ -1,0 +1,36 @@
+buildscript {
+    ext {
+        commonsCliVersion = '1.4'
+        lombokVersion = '1.18.20'
+    }
+}
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'java'
+}
+
+group 'me.kcra'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "commons-cli:commons-cli:$commonsCliVersion"
+
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+}
+
+jar {
+    manifest {
+        attributes(['Main-Class': 'me.kcra.datapackfixer.DatapackFixer'])
+    }
+}
+
+shadowJar {
+    minimize()
+    relocate 'org.apache.commons.cli', 'me.kcra.datapackfixer.lib.cli'
+}
