@@ -1,7 +1,6 @@
 package me.kcra.datapackfixer.tasks;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import me.kcra.datapackfixer.DatapackFixer;
 
 import java.io.File;
@@ -16,13 +15,11 @@ import java.util.logging.Level;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-@Log
 @RequiredArgsConstructor(staticName = "of")
-public class RepackingTask implements BasicTask {
+public class RepackingTask {
     private boolean started = false;
     private final File zipFile;
 
-    @Override
     public void start() throws Exception {
         if (started) {
             throw new UnsupportedOperationException("You cannot start this task again!");
@@ -38,7 +35,7 @@ public class RepackingTask implements BasicTask {
                         outputStream.write(bytes, 0, bytes.length);
                         outputStream.closeEntry();
                     } catch (IOException ignored) {
-                        log.log(Level.WARNING, "Could not repack file " + file + ", skipping.");
+                        DatapackFixer.LOGGER.log(Level.WARNING, "Could not repack file " + file + ", skipping.");
                     }
                     return FileVisitResult.CONTINUE;
                 }

@@ -17,12 +17,11 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 @RequiredArgsConstructor(staticName = "of")
-public class UnzippingTask implements BasicTask {
+public class UnzippingTask {
     private boolean started = false;
     private final List<CompletableFuture<Void>> tasks = new ArrayList<>();
     private final File file;
 
-    @Override
     public void start() throws Exception {
         if (started) {
             throw new UnsupportedOperationException("You cannot start this task again!");

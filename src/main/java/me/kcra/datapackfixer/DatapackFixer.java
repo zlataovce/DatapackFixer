@@ -13,7 +13,6 @@ public class DatapackFixer {
     public static final Logger LOGGER = Logger.getLogger("DatapackFixer");
     public static final Path WORK_FOLDER;
     private static final File REPACKED_FILE;
-    private static final CommandLineParser ARG_PARSER = new DefaultParser();
     private static final HelpFormatter HELP_FORMATTER = new HelpFormatter();
     private static final Options OPTS = new Options()
             .addRequiredOption("f", "file", true, "Path to the datapack")
@@ -27,7 +26,7 @@ public class DatapackFixer {
 
     public static void main(String[] args) {
         try {
-            final CommandLine cmd = ARG_PARSER.parse(OPTS, args);
+            final CommandLine cmd = new DefaultParser().parse(OPTS, args);
 
             if (cmd.hasOption("f")) {
                 //noinspection ResultOfMethodCallIgnored
