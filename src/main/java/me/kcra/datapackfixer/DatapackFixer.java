@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DatapackFixer {
+public final class DatapackFixer {
     public static final Logger LOGGER = Logger.getLogger("DatapackFixer");
     public static final Path WORK_FOLDER;
     private static final File REPACKED_FILE;
