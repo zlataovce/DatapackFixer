@@ -41,10 +41,11 @@ public class UnzippingTask {
                     } catch (IOException ignored) {
                         DatapackFixer.LOGGER.log(Level.WARNING, "Could not extract file " + entry.getName() + ", skipping.");
                     }
-                }));
+                }, DatapackFixer.THREAD_POOL));
             }
             CompletableFuture.allOf(tasks.toArray(CompletableFuture[]::new)).join();
             DatapackFixer.LOGGER.log(Level.INFO, "Processed " + tasks.size() + " files total, datapack extracted.");
+            tasks.clear();
         }
     }
 }

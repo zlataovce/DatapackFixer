@@ -6,10 +6,13 @@ import org.apache.commons.cli.*;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class DatapackFixer {
+    public static final ExecutorService THREAD_POOL = Executors.newCachedThreadPool();
     public static final Logger LOGGER = Logger.getLogger("DatapackFixer");
     public static final Path WORK_FOLDER;
     private static final File REPACKED_FILE;
